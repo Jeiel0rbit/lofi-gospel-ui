@@ -1,4 +1,4 @@
-import { Headphones, Music, BookOpen, Bot, Github, Users } from 'lucide-react';
+import { Headphones, Music, BookOpen, Bot, Github, Users, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
@@ -172,18 +172,51 @@ const partners = [
 const PartnersSection = () => (
   <section id="partners" className="py-12 md:py-24">
     <div className="container mx-auto px-4">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground animate-fade-in-up">
         Nossos Parceiros
       </h2>
-      <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-        {partners.map((partner, index) => (
-          <Button key={index} variant="secondary" size="lg" asChild className="transition-transform hover:scale-105">
-            <Link href={partner.link} target="_blank" className="w-64">
-              <Users className="mr-2 h-5 w-5" />
-              {partner.name}
-            </Link>
-          </Button>
-        ))}
+      <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
+        <div className="animate-fade-in-up" style={{ animationDelay: '150ms' }}>
+          <Card className="w-full md:w-80 text-center bg-background/50 border-border hover:border-primary hover:shadow-primary/10 transition-all shadow-lg hover:-translate-y-2">
+            <CardHeader className="items-center">
+              <div className="p-4 bg-secondary rounded-full mb-4">
+                <Users className="h-8 w-8 text-secondary-foreground" />
+              </div>
+              <CardTitle>{partners[0].name}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Button asChild className="transition-transform hover:scale-105">
+                <Link href={partners[0].link} target="_blank">
+                  Visitar Comunidade
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="text-primary hidden md:block animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+          <Handshake size={48} />
+        </div>
+        
+        <div className="w-1/2 border-t border-dashed border-primary/50 md:hidden my-4"></div>
+
+        <div className="animate-fade-in-up" style={{ animationDelay: '450ms' }}>
+          <Card className="w-full md:w-80 text-center bg-background/50 border-border hover:border-primary hover:shadow-primary/10 transition-all shadow-lg hover:-translate-y-2">
+            <CardHeader className="items-center">
+              <div className="p-4 bg-secondary rounded-full mb-4">
+                <Users className="h-8 w-8 text-secondary-foreground" />
+              </div>
+              <CardTitle>{partners[1].name}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Button asChild className="transition-transform hover:scale-105">
+                <Link href={partners[1].link} target="_blank">
+                  Visitar Comunidade
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   </section>
