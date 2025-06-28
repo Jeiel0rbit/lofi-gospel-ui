@@ -29,11 +29,11 @@ const Header = () => (
       </Link>
       <div className="flex items-center gap-4">
         <Button asChild className="transition-transform hover:scale-105">
-          <Link href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot" target="_blank">
+          <Link href="https://discord.com/oauth2/authorize?client_id=1388170072283025633&permissions=3165440&integration_type=0&scope=bot" target="_blank">
             <Bot className="mr-2 h-4 w-4" /> Adicionar ao Discord
           </Link>
         </Button>
-        <Link href="https://github.com/your-repo" target="_blank" className="text-foreground/80 hover:text-primary hidden sm:inline-block transition-colors" prefetch={false}>
+        <Link href="https://github.com/Jeiel0rbit/lofi-gospel" target="_blank" className="text-foreground/80 hover:text-primary hidden sm:inline-block transition-colors" prefetch={false}>
           <Github className="h-6 w-6" />
         </Link>
       </div>
@@ -53,7 +53,7 @@ const HeroSection = () => (
       </p>
       <div className="flex justify-center mb-12 animate-fade-in-up animation-delay-400">
         <Button size="lg" asChild className="transition-transform hover:scale-105">
-          <Link href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot" target="_blank">
+          <Link href="https://discord.com/oauth2/authorize?client_id=1388170072283025633&permissions=3165440&integration_type=0&scope=bot" target="_blank">
             <Bot className="mr-2 h-5 w-5" /> Convidar o Bot
           </Link>
         </Button>
@@ -165,8 +165,8 @@ const CommandsSection = () => (
 );
 
 const partners = [
-  { name: "LoFi Square", link: "#" },
-  { name: "Geração 144k", link: "#" },
+  { name: "LoFi Square", link: "https://discord.gg/KfF4NSXHCE" },
+  { name: "Geração 144k", link: "https://discord.gg/geracao144k" },
 ];
 
 const PartnersSection = () => (
