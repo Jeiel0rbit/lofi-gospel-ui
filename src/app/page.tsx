@@ -1,4 +1,4 @@
-import { Headphones, Music, BookOpen, Bot, Github, Users, Code } from 'lucide-react';
+import { Headphones, Music, BookOpen, Bot, Github, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
@@ -78,11 +78,6 @@ const features = [
     description: "Duas estações exclusivas: uma com os melhores louvores LoFi Gospel e outra com pregações inspiradoras para edificar sua vida.",
   },
   {
-    icon: Code,
-    title: "Comandos Simples",
-    description: "Controle o bot facilmente com comandos intuitivos como !sjoin para entrar e !sleave para sair do canal de voz.",
-  },
-  {
     icon: Github,
     title: "Código Aberto",
     description: "Nosso projeto é open source com licença MIT. Sinta-se à vontade para contribuir e fazer parte da nossa comunidade no GitHub.",
@@ -95,7 +90,7 @@ const FeaturesSection = () => (
       <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
         Recursos Principais
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         {features.map((feature, index) => (
           <div key={index} className="animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`}}>
             <Card className="bg-background/50 border-border hover:border-primary hover:shadow-primary/10 transition-all shadow-lg h-full hover:-translate-y-2">
@@ -145,15 +140,18 @@ const StationsSection = () => (
 const commands = [
   { command: "!sjoin", description: "Chama o bot para o seu canal de voz." },
   { command: "!sleave", description: "Remove o bot do canal de voz." },
-  { command: "!shelp", description: "Mostra a lista de comandos (apenas para admins/mods)." },
+  { command: "!shelp", description: "Exibe a lista de todos os comandos disponíveis." },
 ];
 
 const CommandsSection = () => (
   <section id="commands" className="py-12 md:py-24 bg-card">
     <div className="container mx-auto px-4">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-        Como Usar o Bot
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+        Comandos do Bot
       </h2>
+      <p className="text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+        Atenção: Todos os comandos a seguir são de uso exclusivo para administradores e moderadores do servidor.
+      </p>
       <div className="max-w-2xl mx-auto space-y-4">
         {commands.map((cmd, index) => (
           <div key={index} className="flex items-center gap-4 p-4 rounded-lg bg-background/50 border border-border transition-all hover:border-primary/50 hover:bg-background">
