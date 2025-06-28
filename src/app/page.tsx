@@ -58,13 +58,13 @@ const HeroSection = () => (
           </Link>
         </Button>
       </div>
-      <div className="relative max-w-5xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl shadow-primary/20 animate-float">
+      <div className="relative max-w-3xl mx-auto aspect-[680/240] rounded-xl overflow-hidden shadow-2xl shadow-primary/20 animate-float">
          <Image
-          src="https://placehold.co/1200x600.png"
-          alt="Ilustração LoFi Gospel Hub"
+          src="https://i.imgur.com/mzAuGU2.png"
+          alt="Banner LoFi Gospel Hub"
           fill
-          className="object-cover bg-muted"
-          data-ai-hint="gospel music"
+          priority
+          className="object-cover"
         />
       </div>
     </div>
