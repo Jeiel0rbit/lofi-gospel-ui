@@ -200,7 +200,7 @@ const Footer = () => (
       <div className="flex items-center gap-6">
         <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Termos de Uso</Link>
         <Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Política de Privacidade</Link>
-        <Link href="https://github.com/your-repo" target="_blank" className="text-muted-foreground hover:text-primary" prefetch={false}>
+        <Link href="https://github.com/Jeiel0rbit/lofi-gospel" target="_blank" className="text-muted-foreground hover:text-primary" prefetch={false}>
           <Github className="h-5 w-5" />
         </Link>
       </div>
