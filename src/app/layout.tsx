@@ -4,8 +4,41 @@ import { Toaster } from "@/components/ui/toaster";
 import LegalModalHandler from '@/components/legal-modal-handler';
 
 export const metadata: Metadata = {
-  title: 'LoFi Gospel Hub',
-  description: 'Sua rádio gospel 24/7 no Discord.',
+  title: 'LoFi Gospel',
+  description: 'Sua rádio gospel 24/7 no Discord. Mergulhe em um ambiente de paz com louvores e pregações que tocam a alma.',
+  keywords: ['LoFi Gospel', 'rádio gospel', 'música gospel', 'bot discord', 'louvores', 'pregações', 'música relaxante'],
+  openGraph: {
+    title: 'LoFi Gospel - Sua Rádio Gospel 24/7 no Discord',
+    description: 'Mergulhe em um ambiente de paz com louvores e pregações que tocam a alma. A qualquer hora, em qualquer lugar.',
+    siteName: 'LoFi Gospel',
+    images: [
+      {
+        url: 'https://i.imgur.com/mzAuGU2.png',
+        width: 680,
+        height: 240,
+        alt: 'Banner LoFi Gospel',
+      },
+    ],
+    locale: 'pt_BR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LoFi Gospel - Sua Rádio Gospel 24/7 no Discord',
+    description: 'Mergulhe em um ambiente de paz com louvores e pregações que tocam a alma.',
+    images: ['https://i.imgur.com/mzAuGU2.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({

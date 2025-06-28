@@ -25,7 +25,7 @@ const Header = () => (
     <div className="container mx-auto flex justify-between items-center">
       <Link href="#" className="flex items-center gap-2" prefetch={false}>
         <Headphones className="h-8 w-8 text-primary" />
-        <span className="text-xl font-bold">LoFi Gospel Hub</span>
+        <span className="text-xl font-bold">LoFi Gospel</span>
       </Link>
       <div className="flex items-center gap-4">
         <Button asChild className="transition-transform hover:scale-105">
@@ -61,7 +61,7 @@ const HeroSection = () => (
       <div className="relative max-w-3xl mx-auto aspect-[680/240] rounded-xl overflow-hidden shadow-2xl shadow-primary/20 animate-float">
          <Image
           src="https://i.imgur.com/mzAuGU2.png"
-          alt="Banner LoFi Gospel Hub"
+          alt="Banner LoFi Gospel"
           fill
           priority
           className="object-cover"
@@ -226,7 +226,7 @@ const Footer = () => (
   <footer className="py-6 border-t border-border/50 bg-card">
     <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
       <p className="text-sm text-muted-foreground">
-        &copy; {new Date().getFullYear()} LoFi Gospel Hub. Todos os direitos reservados.
+        &copy; {new Date().getFullYear()} LoFi Gospel. Todos os direitos reservados.
       </p>
       <div className="flex items-center gap-6">
         <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Termos de Uso</Link>
