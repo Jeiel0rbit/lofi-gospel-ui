@@ -1,6 +1,6 @@
 // src/lib/firebase.ts
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
+import { getAnalytics, type Analytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -12,8 +12,8 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-let app;
-let analytics = null;
+let app: FirebaseApp | undefined;
+let analytics: Analytics | null = null;
 
 // Initialize Firebase only on the client side and if the projectId is available.
 // This prevents the app from crashing if Firebase environment variables are not set.
