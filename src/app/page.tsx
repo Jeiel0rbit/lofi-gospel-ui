@@ -1,10 +1,21 @@
+'use client';
+
 import { Headphones, Music, BookOpen, Bot, Github, Users, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { analytics } from '../lib/firebase'; // Verifique o caminho se necessário
+import { logEvent } from 'firebase/analytics';
 
 export default function Home() {
+  useEffect(() => {
+    if (analytics) {
+      logEvent(analytics, 'page_view', { page_title: 'Home Page - LoFi Gospel' });
+    }
+  }, []);
+
   return (
     <div className="flex flex-col min-h-dvh bg-background text-foreground">
       <Header />
@@ -20,56 +31,86 @@ export default function Home() {
   );
 }
 
-const Header = () => (
-  <header className="py-4 px-4 sm:px-6 lg:px-8 bg-background/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border/50">
-    <div className="container mx-auto flex justify-between items-center">
-      <Link href="#" className="flex items-center gap-2" prefetch={false}>
-        <Headphones className="h-8 w-8 text-primary" />
-        <span className="text-xl font-bold">LoFi Gospel</span>
-      </Link>
-      <div className="flex items-center gap-4">
-        <Button asChild className="transition-transform hover:scale-105">
-          <Link href="https://discord.com/oauth2/authorize?client_id=1388170072283025633&permissions=3165440&integration_type=0&scope=bot" target="_blank">
-            <Bot className="mr-2 h-4 w-4" /> Adicionar ao Discord
-          </Link>
-        </Button>
-        <Link href="https://github.com/Jeiel0rbit/lofi-gospel" target="_blank" className="text-foreground/80 hover:text-primary hidden sm:inline-block transition-colors" prefetch={false}>
-          <Github className="h-6 w-6" />
-        </Link>
-      </div>
-    </div>
-  </header>
-);
+const Header = () => {
+  const trackButtonClick = (buttonName: string, url: string) => {
+    if (analytics) {
+      logEvent(analytics, 'button_click', { button_name: buttonName, destination_url: url });
+    }
+  };
 
-const HeroSection = () => (
-  <section className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
-    <div className="absolute inset-0 bg-gradient-to-br from-background via-accent to-background/50 -z-10"></div>
-    <div className="container mx-auto px-4 text-center">
-      <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 text-foreground animate-fade-in-up">
-        Sua Rádio Gospel 24/7 no Discord
-      </h1>
-      <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in-up animation-delay-200">
-        Mergulhe em um ambiente de paz com louvores e pregações que tocam a alma. A qualquer hora, em qualquer lugar.
-      </p>
-      <div className="flex justify-center mb-12 animate-fade-in-up animation-delay-400">
-        <Button size="lg" asChild className="transition-transform hover:scale-105">
-          <Link href="https://discord.com/oauth2/authorize?client_id=1388170072283025633&permissions=3165440&integration_type=0&scope=bot" target="_blank">
-            <Bot className="mr-2 h-5 w-5" /> Convidar o Bot
+  return (
+    <header className="py-4 px-4 sm:px-6 lg:px-8 bg-background/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border/50">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+          <Headphones className="h-8 w-8 text-primary" />
+          <span className="text-xl font-bold">LoFi Gospel</span>
+        </Link>
+        <div className="flex items-center gap-4">
+          <Button asChild className="transition-transform hover:scale-105">
+            <Link
+              href="https://discord.com/oauth2/authorize?client_id=1388170072283025633&permissions=3165440&integration_type=0&scope=bot"
+              target="_blank"
+              onClick={() => trackButtonClick('Adicionar ao Discord - Header', 'https://discord.com/oauth2/authorize?client_id=1388170072283025633&permissions=3165440&integration_type=0&scope=bot')}
+            >
+              <Bot className="mr-2 h-4 w-4" /> Adicionar ao Discord
+            </Link>
+          </Button>
+          <Link
+            href="https://github.com/Jeiel0rbit/lofi-gospel"
+            target="_blank"
+            className="text-foreground/80 hover:text-primary hidden sm:inline-block transition-colors"
+            prefetch={false}
+            onClick={() => trackButtonClick('GitHub Icon - Header', 'https://github.com/Jeiel0rbit/lofi-gospel')}
+          >
+            <Github className="h-6 w-6" />
           </Link>
-        </Button>
+        </div>
       </div>
-      <div className="relative max-w-3xl mx-auto aspect-[680/240] rounded-xl overflow-hidden shadow-2xl shadow-primary/20 animate-float">
-         <Image
-          src="https://i.imgur.com/mzAuGU2.png"
-          alt="Banner LoFi Gospel"
-          fill
-          priority
-          className="object-cover"
-        />
+    </header>
+  );
+};
+
+const HeroSection = () => {
+  const trackButtonClick = (buttonName: string, url: string) => {
+    if (analytics) {
+      logEvent(analytics, 'button_click', { button_name: buttonName, destination_url: url });
+    }
+  };
+
+  return (
+    <section className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-accent to-background/50 -z-10"></div>
+      <div className="container mx-auto px-4 text-center">
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 text-foreground animate-fade-in-up">
+          Sua Rádio Gospel 24/7 no Discord
+        </h1>
+        <p className="max-w-3xl mx-auto text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in-up animation-delay-200">
+          Mergulhe em um ambiente de paz com louvores e pregações que tocam a alma. A qualquer hora, em qualquer lugar.
+        </p>
+        <div className="flex justify-center mb-12 animate-fade-in-up animation-delay-400">
+          <Button size="lg" asChild className="transition-transform hover:scale-105">
+            <Link
+              href="https://discord.com/oauth2/authorize?client_id=1388170072283025633&permissions=3165440&integration_type=0&scope=bot"
+              target="_blank"
+              onClick={() => trackButtonClick('Convidar o Bot - Hero', 'https://discord.com/oauth2/authorize?client_id=1388170072283025633&permissions=3165440&integration_type=0&scope=bot')}
+            >
+              <Bot className="mr-2 h-5 w-5" /> Convidar o Bot
+            </Link>
+          </Button>
+        </div>
+        <div className="relative max-w-3xl mx-auto aspect-[680/240] rounded-xl overflow-hidden shadow-2xl shadow-primary/20 animate-float">
+           <Image
+            src="https://i.imgur.com/mzAuGU2.png"
+            alt="Banner LoFi Gospel"
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const features = [
   {
@@ -169,72 +210,116 @@ const partners = [
   { name: "Geração 144k", link: "https://discord.gg/geracao144k" },
 ];
 
-const PartnersSection = () => (
-  <section id="partners" className="py-12 md:py-24">
-    <div className="container mx-auto px-4">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground animate-fade-in-up">
-        Nossos Parceiros
-      </h2>
-      <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
-        <div className="animate-fade-in-up" style={{ animationDelay: '150ms' }}>
-          <Card className="w-full md:w-80 text-center bg-background/50 border-border hover:border-primary hover:shadow-primary/10 transition-all shadow-lg hover:-translate-y-2">
-            <CardHeader className="items-center">
-              <div className="p-4 bg-secondary rounded-full mb-4">
-                <Users className="h-8 w-8 text-secondary-foreground" />
-              </div>
-              <CardTitle>{partners[0].name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Button asChild className="transition-transform hover:scale-105">
-                <Link href={partners[0].link} target="_blank">
-                  Visitar Comunidade
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
+const PartnersSection = () => {
+  const trackButtonClick = (buttonName: string, url: string) => {
+    if (analytics) {
+      logEvent(analytics, 'button_click', { button_name: buttonName, destination_url: url });
+    }
+  };
 
-        <div className="text-primary hidden md:block animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-          <Handshake size={48} />
-        </div>
-        
-        <div className="w-1/2 border-t border-dashed border-primary/50 md:hidden my-4"></div>
+  return (
+    <section id="partners" className="py-12 md:py-24">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground animate-fade-in-up">
+          Nossos Parceiros
+        </h2>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
+          <div className="animate-fade-in-up" style={{ animationDelay: '150ms' }}>
+            <Card className="w-full md:w-80 text-center bg-background/50 border-border hover:border-primary hover:shadow-primary/10 transition-all shadow-lg hover:-translate-y-2">
+              <CardHeader className="items-center">
+                <div className="p-4 bg-secondary rounded-full mb-4">
+                  <Users className="h-8 w-8 text-secondary-foreground" />
+                </div>
+                <CardTitle>{partners[0].name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button asChild className="transition-transform hover:scale-105">
+                  <Link
+                    href={partners[0].link}
+                    target="_blank"
+                    onClick={() => trackButtonClick(`Visitar Comunidade - ${partners[0].name}`, partners[0].link)}
+                  >
+                    Visitar Comunidade
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
 
-        <div className="animate-fade-in-up" style={{ animationDelay: '450ms' }}>
-          <Card className="w-full md:w-80 text-center bg-background/50 border-border hover:border-primary hover:shadow-primary/10 transition-all shadow-lg hover:-translate-y-2">
-            <CardHeader className="items-center">
-              <div className="p-4 bg-secondary rounded-full mb-4">
-                <Users className="h-8 w-8 text-secondary-foreground" />
-              </div>
-              <CardTitle>{partners[1].name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Button asChild className="transition-transform hover:scale-105">
-                <Link href={partners[1].link} target="_blank">
-                  Visitar Comunidade
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
+          <div className="text-primary hidden md:block animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+            <Handshake size={48} />
+          </div>
+          
+          <div className="w-1/2 border-t border-dashed border-primary/50 md:hidden my-4"></div>
+
+          <div className="animate-fade-in-up" style={{ animationDelay: '450ms' }}>
+            <Card className="w-full md:w-80 text-center bg-background/50 border-border hover:border-primary hover:shadow-primary/10 transition-all shadow-lg hover:-translate-y-2">
+              <CardHeader className="items-center">
+                <div className="p-4 bg-secondary rounded-full mb-4">
+                  <Users className="h-8 w-8 text-secondary-foreground" />
+                </div>
+                <CardTitle>{partners[1].name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Button asChild className="transition-transform hover:scale-105">
+                  <Link
+                    href={partners[1].link}
+                    target="_blank"
+                    onClick={() => trackButtonClick(`Visitar Comunidade - ${partners[1].name}`, partners[1].link)}
+                  >
+                    Visitar Comunidade
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
-const Footer = () => (
-  <footer className="py-6 border-t border-border/50 bg-card">
-    <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p className="text-sm text-muted-foreground">
-        &copy; {new Date().getFullYear()} LoFi Gospel. Todos os direitos reservados.
-      </p>
-      <div className="flex items-center gap-6">
-        <Link href="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Termos de Uso</Link>
-        <Link href="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors" prefetch={false}>Política de Privacidade</Link>
-        <Link href="https://github.com/Jeiel0rbit/lofi-gospel" target="_blank" className="text-muted-foreground hover:text-primary" prefetch={false}>
-          <Github className="h-5 w-5" />
-        </Link>
+const Footer = () => {
+  const trackLinkClick = (linkName: string, url: string) => {
+    if (analytics) {
+      logEvent(analytics, 'link_click', { link_name: linkName, destination_url: url });
+    }
+  };
+
+  return (
+    <footer className="py-6 border-t border-border/50 bg-card">
+      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p className="text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} LoFi Gospel. Todos os direitos reservados.
+        </p>
+        <div className="flex items-center gap-6">
+          <Link
+            href="/terms"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            prefetch={false}
+            onClick={() => trackLinkClick('Termos de Uso - Footer', '/terms')}
+          >
+            Termos de Uso
+          </Link>
+          <Link
+            href="/privacy"
+            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            prefetch={false}
+            onClick={() => trackLinkClick('Política de Privacidade - Footer', '/privacy')}
+          >
+            Política de Privacidade
+          </Link>
+          <Link
+            href="https://github.com/Jeiel0rbit/lofi-gospel"
+            target="_blank"
+            className="text-muted-foreground hover:text-primary"
+            prefetch={false}
+            onClick={() => trackLinkClick('GitHub Icon - Footer', 'https://github.com/Jeiel0rbit/lofi-gospel')}
+          >
+            <Github className="h-5 w-5" />
+          </Link>
+        </div>
       </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
