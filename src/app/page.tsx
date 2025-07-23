@@ -318,6 +318,11 @@ const Footer = () => {
           >
             <Github className="h-5 w-5" />
           </Link>
+
+          {/* Top.gg widget */}
+          <a href="https://top.gg/bot/1388170072283025633" target="_blank" rel="noopener noreferrer">
+            <img src="https://top.gg/api/widget/1388170072283025633.svg" alt="LoFi Gospel - Discord Bot"/>
+          </a>
         </div>
       </div>
     </footer>
